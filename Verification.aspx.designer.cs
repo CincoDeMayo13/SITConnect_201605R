@@ -11,7 +11,7 @@ namespace SITConnect_201605R
 {
 
 
-    public partial class Users
+    public partial class Verification
     {
 
         /// <summary>
@@ -24,30 +24,30 @@ namespace SITConnect_201605R
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// txtUserID control.
+        /// txtSecurityCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserID;
+        protected global::System.Web.UI.WebControls.TextBox txtSecurityCode;
 
         /// <summary>
-        /// btnSubmit control.
+        /// btnValidate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.WebControls.Button btnValidate;
 
         /// <summary>
-        /// gvUserInfo control.
+        /// lblResult control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUserInfo;
+        protected global::System.Web.UI.WebControls.Label lblResult;
     }
 }
