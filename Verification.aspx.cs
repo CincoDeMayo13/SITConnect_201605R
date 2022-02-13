@@ -20,18 +20,16 @@ namespace SITConnect_201605R
             {
                 if (!Session["AuthToken"].ToString().Equals(Request.Cookies["AuthToken"].Value))
                 {
-                    Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('Restricted access. Please login!!')", true);
                     Response.Redirect("Login.aspx", false);
                 }
             }
             else
             {
-                Page.ClientScript.RegisterClientScriptBlock(typeof(Page), "Alert", "alert('Restricted access. Please login!!')", true);
                 Response.Redirect("Login.aspx", false);
             }
         }
         
-        protected string getOTPCode(string email)
+        protected string getCode(string email)
         {
             string otp = null;
 
@@ -61,9 +59,9 @@ namespace SITConnect_201605R
             return otp;
         }
 
-        protected void verifyOTP(object sender, EventArgs e)
+        protected void verifyCode(object sender, EventArgs e)
         {
-            if (HttpUtility.HtmlEncode(txtSecurityCode.Text.ToString()) == getOTPCode(Session["LoggedIn"].ToString()))
+            if (HttpUtility.HtmlEncode(txtSecurityCode.Text.ToString()) == getCode(Session["LoggedIn"].ToString()))
             {
                 loginLog();
                 Response.Redirect("Home.aspx", false);

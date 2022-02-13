@@ -132,9 +132,9 @@ namespace SITConnect_201605R
 
                             Random random = new Random();
                             code = random.Next(000000, 999999).ToString();
-                            createOTPcode(email, code);
+                            createcode(email, code);
 
-                            sendOTPCode(code);
+                            emailCode(code);
 
                             // now create a new cookie with this guid value
                             Response.Cookies.Add(new HttpCookie("AuthToken", guid));
@@ -366,6 +366,7 @@ namespace SITConnect_201605R
 
         private bool expirelock(string email)
         {
+            bool changed = false;
             Debug.WriteLine("starting");
             DateTime f;
             var timenow = DateTime.Now;
@@ -430,12 +431,14 @@ namespace SITConnect_201605R
                 command3.Parameters.AddWithValue("@time", DBNull.Value);
                 command3.ExecuteNonQuery();
 
+                changed = true;
+
             }
             connection.Close();
-            return locked;
+            return changed;
 
         }
-        protected string createOTPcode(string email, string code)
+        protected string createcode(string email, string code)
         {
             string otp = null;
             SqlConnection con = new SqlConnection(MYDBConnectionString);
@@ -465,9 +468,9 @@ namespace SITConnect_201605R
             return otp;
         }
 
-        protected string sendOTPCode(string otp)
+        protected string emailCode(string otp)
         {
-            string fromaddress = "SITConnect <sitconnect66@gmail.com>";
+            string from = "SITConnect <sitconnect66@gmail.com>";
             string str = null;
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
@@ -481,7 +484,7 @@ namespace SITConnect_201605R
                 Body = "Dear " + HttpUtility.HtmlEncode(tb_email.Text.ToString()) + ", your verification code is: " + otp
             };
             mailMessage.To.Add(HttpUtility.HtmlEncode(tb_email.Text.ToString()));
-            mailMessage.From = new MailAddress(fromaddress);
+            mailMessage.From = new MailAddress(from);
             try
             {
                 smtpClient.Send(mailMessage);

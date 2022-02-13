@@ -15,7 +15,7 @@
              Enter code
              <asp:TextBox ID="txtSecurityCode" runat="server"></asp:TextBox>
              </p> 
-             <asp:Button ID="btnValidate" OnClick="verifyOTP" CssClass="btn btn-primary" runat="server" Text="Validate" />  
+             <asp:Button ID="btnValidate" OnClick="verifyCode" CssClass="btn btn-primary" runat="server" Text="Validate" />  
              <br />
              <br />      
              <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
